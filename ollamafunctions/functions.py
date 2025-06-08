@@ -11,7 +11,14 @@ import PyPDF2
 from pathlib import Path
 
 def load_pdf_context(context_folder="./context"):
-    """Load all PDF files from context folder and return combined text"""
+    """Load all PDF files from context folder and return combined text (cached)"""
+    
+    global _pdf_cache
+    if _pdf_cache is not None:
+        return _pdf_cache
+    
+    import warnings
+    warnings.filterwarnings("ignore")
     
     context_text = ""
     pdf_files = glob.glob(os.path.join(context_folder, "*.pdf"))
@@ -36,6 +43,8 @@ def load_pdf_context(context_folder="./context"):
         except Exception as e:
             print(f"Error loading {pdf_file}: {str(e)}")
     
+    # Cache the result
+    _pdf_cache = context_text
     return context_text
 
 def translate_to_english(text, source_lang="German"):
