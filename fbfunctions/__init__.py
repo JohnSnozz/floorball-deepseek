@@ -5,3 +5,8 @@ from .apifunctions import (
     teamsofclub,
     clubidofclubname
 )
+
+from .ragfunctions import (
+    rulesquestion
+ 
+)

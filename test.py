@@ -1,4 +1,3 @@
 from ollamafunctions import orchestration
 
-result = orchestration("What's the current team info for Bayern Munich?")
-print(result)
+print(orchestration("Wer darf mit dem Schiri reden?", debug=True))
